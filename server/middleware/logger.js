@@ -1,9 +1,11 @@
 import chalk from 'chalk'
+import config from 'config'
 import isEqual from 'lodash/isEqual'
 import utils from '@s/utils'
+import detect from 'detect-port'
 
 export const env = () => {
-  console.log()
+  console.clear()
   console.log(
     chalk.bold('NODE_ENV'),
     chalk.keyword('orange').bold(process.env.NODE_ENV)
@@ -11,7 +13,12 @@ export const env = () => {
   console.log()
 }
 
-export const listening = (context, host, port) => {
+export const listening = async (context, host, port) => {
+  let cport = await detect(config.port)
+  if (!isEqual(config.port, cport)) {
+    console.log(chalk.green.bold(`Server Updated successfully.`), `\n`)
+    return
+  }
   const SERVER_API = 'Api Server'
   const SERVER_CLIENT = 'Client Server'
   if (isEqual(context, 'SERVER')) {
@@ -30,7 +37,7 @@ export const listening = (context, host, port) => {
     if (!utils.isProd) {
       console.log(
         ` `,
-        chalk.white(`Open browser and visit ${SERVER_CLIENT}`,)
+        chalk.gray(`Open browser and visit ${SERVER_CLIENT}`,)
       )
       console.log()
       console.log()

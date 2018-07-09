@@ -12,7 +12,6 @@ import utils from '@s/utils'
 import apiResult from '@s/utils/res'
 import logger from '@s/middleware/logger'
 import {notFound} from '@s/middleware/error'
-// const logger = require('@s/middleware/logger')
 
 global.Promise = bluebird
 global.apiResult = apiResult
@@ -35,7 +34,7 @@ export default async (context, callback) => {
     }
   }
 
-  logger.listening(context, HOST, PORT)
+  await logger.listening(context, HOST, PORT)
 
   // cache static
   const serve = (filepath, cache) => {

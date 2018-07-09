@@ -23,6 +23,7 @@ class View {
     } else {
       const devServer = utils.resolve('build/setup-dev-server')
       this.ready = require(devServer)(app, (bundle, opts) => {
+        // dev server ready
         this.renderer = this.createRenderer(bundle, opts)
       })
     }

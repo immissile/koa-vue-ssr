@@ -7,7 +7,6 @@ const config = require('config')
 
 const router = new koaRouter()
 
-// 8081
 worker(`CLIENT`, app => {
   // proxy api request
   const tables = {

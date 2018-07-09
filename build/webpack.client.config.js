@@ -24,10 +24,10 @@ const webpackClientConfig = merge(base, {
   output: {
     path: config.build.assetsRoot,
     filename: isProd
-      ? utils.assetsPath('js/[name].[chunkhash].js')
+      ? utils.assetsPath('js/[name].[chunkhash:8].js')
       : '[name].js',
     chunkFilename: isProd
-      ? utils.assetsPath('js/[id].[chunkhash].js')
+      ? utils.assetsPath('js/[id].[chunkhash:8].js')
       : '[id].js'
   },
   plugins: [
@@ -67,6 +67,7 @@ if (isProd) {
       cacheId: 'maybeul',
       filename: 'service-worker.js',
       minify: true,
+      logger: function () {},
       dontCacheBustUrlsMatching: /./,
       staticFileGlobsIgnorePatterns: [/index\.html$/, /\.map$/, /\.json$/],
       /*runtimeCaching: [
